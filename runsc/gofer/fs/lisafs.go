@@ -849,6 +849,7 @@ func (fd *controlFDLisa) Link(dir lisafs.ControlFDImpl, name string) (*lisafs.Co
 
 	linkStat, err := fstatTo(linkFD)
 	if err != nil {
+		_ = unix.Close(linkFD)
 		return nil, lisafs.Statx{}, err
 	}
 	cu.Release()
